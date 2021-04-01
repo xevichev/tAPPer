@@ -1,4 +1,4 @@
-##Bienvenido al repositorio oficial de tAPPer 🍎 🍗🥙
+Bienvenido al repositorio oficial de tAPPer 🍎 🍗🥙
 
 **Introducción:**
 
