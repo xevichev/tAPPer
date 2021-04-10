@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan'); //modul per veure per consola totes les peticions que es fan al nostre servidor.
 const path = require('path'); // metode per trobar direccions del arxius. utilitzat a staticfiles
-require('dotenv').config();
+const dotenv= require('dotenv').config();
 
 const {moongose}=require('./database');
 
