@@ -20,8 +20,8 @@ app.use(morgan('dev')); //a morgan se li passa paramatre dev perque ens surti in
 app.use(express.json());//cada cop que una dada arribi al nostre servidor passara per aquesta funcio  i si es json podrem accedir a ella.
 
 //Routes---
-app.use('/api/recetas',require('./routes/recetas.routes')); //el prefeix ens serveix perque la resposta no sigui al arrel sino a localhost:3000/api/recetas.
-app.use('/api/ingredientes', require('./routes/ingredientes.routes'));
+app.use('/api/recetas',require('./routes/receta.routes')); //el prefeix ens serveix perque la resposta no sigui al arrel sino a localhost:3000/api/recetas.
+app.use('/api/ingredientes', require('./routes/ingrediente.routes'));
 //Static files --- 
 console.log(__dirname);   //dirname em diu TOTA la ruta desde el sistema fins on esta el arxiu.
 console.log(path.join(__dirname, 'public'));// amb path.join aconseguim la ruta desde sistema fins la carpeta public.

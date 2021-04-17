@@ -11,7 +11,11 @@ const recetaSchema= new Schema({           //creem un esquema de les dades que h
     dificultad:Number,
     raciones:Number,
     microondas: String,
-    ingredientes: Array
+    ingredientes: [
+        {type: moongose.Schema.Types.ObjectId, 
+        ref:"Ingrediente"}, // Ingrediente se refiere al model que exportas. 
+                 
+        ]
 });
 
 module.exports=moongose.model('Receta', recetaSchema)   //aqui es concreta dient el que el nostre model de dades es diras 'receta' y tindra el model recetaschema

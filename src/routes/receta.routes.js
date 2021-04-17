@@ -1,14 +1,22 @@
 const { Router } = require('express');
 const express = require('express');
+const ingredientes = require('../models/ingrediente');
+const { populate } = require('../models/receta');
 
 const router = express.Router(); // el metode router ens retorna un objecte per  guardar rutes.
 
 const Receta = require('../models/receta');
 
 router.get('/', async (req,res)=>{ //mitjançant el metode  get quan arribi una petició al '/' (es la ruta incial o principal) es respongui amb el que vulguem, ara per exemple un json
-    const receta= await Receta.find();
-    console.log(receta);//array de momento vacio, se puede ver en api/recetas
-    res.json(receta);
+    const receta= await Receta.find()
+    .populate('ingredientes') //ingredientes hace referencia a la key dentro del model receta.js
+    .exec((err, receta)=>{
+        if(err){
+            return res.status(400).send(err);
+        }
+        return res.json(receta);
+    });
+    console.log(receta)
 });
 
 router.get('/:id', async (req, res) => {
@@ -17,20 +25,33 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/nueva-receta', (req, res) => {  // SUBIR
-    const newReceta = new Receta({
+
+    const {name, vegetariano,vegano, duracion,procedimiento, dificultad, raciones,microondas, ingredientesId} = req.body;
+    
+    let newReceta = new Receta({
         
-        name: req.body.name,
-        vegetariano: req.body.vegetariano,
-        vegano:req.body.vegano,
-        duracion:req.body.duracion,
-        procedimiento:req.body.procedimiento,
-        dificultad:req.body.dificultad,
-        raciones:req.body.raciones,
-        microondas: req.body.microondas,
-        ingredientes: req.body.ingredientes,
+        // name: req.body.name,
+        // vegetariano: req.body.vegetariano,
+        // vegano:req.body.vegano,
+        // duracion:req.body.duracion,
+        // procedimiento:req.body.procedimiento,
+        // dificultad:req.body.dificultad,
+        // raciones:req.body.raciones,
+        // microondas: req.body.microondas,
+        // ingredientes: req.body.ingredientes
+
+        name,
+        vegetariano,
+        vegano,
+        duracion,
+        procedimiento,
+        dificultad,
+        raciones,
+        microondas,
+        ingredientes: ingredientesId
     })
     
-    newReceta.save().then(receta => res.json(receta)); //que quieren decir estas lineas?
+    newReceta.save().then(receta => res.json(receta)); 
 });
 
 router.put('/:id', async(req, res)=>{   //PUT = ACTUALIZAR

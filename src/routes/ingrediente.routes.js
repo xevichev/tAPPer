@@ -1,12 +1,14 @@
 const express = require('express');
+const { populate } = require('../models/ingrediente');
 
 const router = express.Router(); 
 
-const Ingrediente = require('../models/ingredientes');
+const Ingrediente = require('../models/ingrediente');
 
 
 router.get('/', async (req,res)=>{ 
     const ingrediente= await Ingrediente.find();
+       
     console.log(ingrediente);
     res.json(ingrediente);
 });
@@ -24,7 +26,8 @@ router.post('/nuevo-ingrediente', (req, res) => {
         medida: req.body.medida,
         KCal: req.body.KCal
     })
-    newIngrediente.save().then(ingrediente => res.json(ingrediente))
+    newIngrediente.save().then(ingrediente => res.json(ingrediente)) // la segunda parte de la frase?? then ingrediente?
+
 });
 
 router.put('/:id', async (req, res)=> {

@@ -8,4 +8,4 @@ const ingredienteSchema= new Schema({           //creem un esquema de les dades 
     KCal: Number //cada 100gramos
 });
 
-module.exports=moongose.model('Ingrediente', ingredienteSchema)
+module.exports=moongose.model('Ingrediente', ingredienteSchema)// el nombre del modelo se exportara con nombre Ingrediente que toma el esquema diseñado en linia 5
