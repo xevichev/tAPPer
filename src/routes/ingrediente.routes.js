@@ -26,7 +26,8 @@ router.post('/nuevo-ingrediente', (req, res) => {
         medida: req.body.medida,
         KCal: req.body.KCal
     })
-    newIngrediente.save().then(ingrediente => res.json(ingrediente)) // la segunda parte de la frase?? then ingrediente?
+    newIngrediente.save()
+    res.json({status:"Ingrediente agregado"}); // la segunda parte de la frase?? then ingrediente?
 
 });
 
@@ -36,7 +37,7 @@ router.put('/:id', async (req, res)=> {
         medida: req.body.medida,
         KCal: req.body.Kcal
     })
-    await Ingrediente.findByIdAndUpdate(req.params.id, newIngrediente). then(ingrediente => res.json(ingrediente))
+    await Ingrediente.findByIdAndUpdate(req.params.id, newIngrediente).then(() => res.json({status:"ingrediente actualizado"}))
 });
 
 router.delete('/:id', async(req, res)=> {              //BORRAR
