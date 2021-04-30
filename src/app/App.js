@@ -20,7 +20,7 @@ class App extends Component{
 
     agregarIngrediente(e){
         if (this.state._id) {
-            fetch(`/api/ingredientes/nuevo-ingrediente${this.state._id}`, {
+            fetch(`/api/ingredientes/${this.state._id}`, {
                 method: 'PUT',
                 body:JSON.stringify(this.state),                              //no se actualiza "uncaught (in promise)"
                 headers: {
@@ -28,16 +28,19 @@ class App extends Component{
                     'Content-Type': 'application/json'
                 }
             })
-            .then(res => res.json())                                        //me falta escribir el m.toast, resetear estado y hacer get para queme salga por tabla
-            .then(data=> console.log(data));
+            .then(res => res.json())                                        //me falta escribir el m.toast, resetear estado y hacer get para que me salga por tabla
+            .then(data=> {console.log(data)
+                this.setState({name:"", medida:"", KCal:"" })
+                this.fetchIngredientes();
+            });
             
         } else{
             fetch('/api/ingredientes/nuevo-ingrediente', {
                 method: 'POST',
                 body: JSON.stringify(this.state), 
                 headers: {
-                    'Accept': 'application/json',                               //ALGO NO FUNCIONA CON EL IF. SI LO QUITO ME VA PERFECTO PERO
-                    'Content-Type': 'application/json'                          //SINO A VECES NO ACTUALIZA LA LISTA CUANDO AÑADO INGREDIENTE
+                    'Accept': 'application/json',                               
+                    'Content-Type': 'application/json'                          
                 }
             })
             .then(res=> res.json())
@@ -118,7 +121,7 @@ class App extends Component{
                 {/* Nav-bar */}
                 <nav className="light-blue">
                     <div className="container">
-                        <a className="brand-logo" href="/">tAPPer</a>
+                        <a className="brand-logo" href="/">tapper</a>
                     </div>
                 </nav>
                 <div className="container">

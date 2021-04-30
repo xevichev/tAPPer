@@ -32,12 +32,8 @@ router.post('/nuevo-ingrediente', (req, res) => {
 });
 
 router.put('/:id', async (req, res)=> {
-    const newIngrediente = new Ingrediente({
-        name: req.body.name,
-        medida: req.body.medida,
-        KCal: req.body.Kcal
-    })
-    await Ingrediente.findByIdAndUpdate(req.params.id, newIngrediente).then(() => res.json({status:"ingrediente actualizado"}))
+    
+    await Ingrediente.findByIdAndUpdate(req.params.id, req.body).then(() => res.json({status:"ingrediente actualizado"}))
 });
 
 router.delete('/:id', async(req, res)=> {              //BORRAR

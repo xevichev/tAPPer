@@ -7,16 +7,11 @@ const router = express.Router(); // el metode router ens retorna un objecte per 
 
 const Receta = require('../models/receta');
 
-router.get('/', async (req,res)=>{ //mitjançant el metode  get quan arribi una petició al '/' (es la ruta incial o principal) es respongui amb el que vulguem, ara per exemple un json
-    const receta= await Receta.find()
-    .populate('ingredientes') //ingredientes hace referencia a la key dentro del model receta.js
-    .exec((err, receta)=>{
-        if(err){
-            return res.status(400).send(err);
-        }
-        return res.json(receta);
-    });
-    console.log(receta)
+router.get('/', async (req,res)=>{ 
+    const receta= await Receta.find().populate("ingredientes")
+          
+    console.log(receta);
+    res.json(receta);
 });
 
 router.get('/:id', async (req, res) => {
