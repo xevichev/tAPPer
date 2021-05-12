@@ -2,10 +2,12 @@
   "name": "playground",
   "version": "1.0.0",
   "description": "Bienvenido al repositorio oficial de tAPPer 🍎 🍗🥙",
-  "main": "recetasapi.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node /index.js",
+    "client": " cd client && npm start",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "server": "nodemon /index.js",
     "webpack": "webpack --mode development --watch"
   },
   "repository": {
@@ -21,21 +23,14 @@
   "homepage": "https://github.com/xevichev/tAPPer#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "concurrently": "^6.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.3",
-    "morgan": "^1.10.0",
-    "react-router-dom": "^5.2.0"
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.16",
-    "@babel/preset-env": "^7.13.15",
-    "@babel/preset-react": "^7.13.13",
-    "babel-loader": "^8.2.2",
-    "nodemon": "^2.0.7",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "webpack": "^4.12.0",
-    "webpack-cli": "^3.0.3"
+    "nodemon": "^2.0.7"
   }
 }
