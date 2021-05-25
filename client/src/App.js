@@ -4,6 +4,8 @@ import CrearReceta from "./components/Crearreceta";
 import GestionIngredientes from "./components/GestionIngredientes";
 import Home from "./components/Home";
 import Header from "./components/Header";
+import Inscribirse from "./components/Inscribirse";
+import "./App.css";
 
 function App(){
   const history = useHistory();
@@ -14,14 +16,17 @@ function App(){
     <Header/>
     
     <Switch>
-        <Route path="/CrearReceta" component={CrearReceta}>
+        <Route path="/CrearReceta" >
         <CrearReceta />
         </Route>
-        <Route path="/"  component={Home} exact={true}>
+        <Route path="/"  exact={true}>
         <Home />
         </Route>
-        <Route path="/GestionIngredientes" component={GestionIngredientes} >
+        <Route path="/GestionIngredientes"  >
         <GestionIngredientes/>
+        </Route>
+        <Route path="/Inscribirse" >
+        <Inscribirse/>
         </Route>
 
     </Switch>

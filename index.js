@@ -23,6 +23,7 @@ app.use(cors());
 //Routes---
 app.use('/api/recetas',require('./routes/receta.routes')); //el prefeix ens serveix perque la resposta no sigui al arrel sino a localhost:3000/api/recetas.
 app.use('/api/ingredientes', require('./routes/ingrediente.routes'));
+app.use('/api/users', require('./routes/user.routes'));
 //Static files --- 
 console.log(__dirname);   //dirname em diu TOTA la ruta desde el sistema fins on esta el arxiu.
 console.log(path.join(__dirname, 'public'));// amb path.join aconseguim la ruta desde sistema fins la carpeta public.

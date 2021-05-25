@@ -7,10 +7,10 @@ const Ingrediente = require('../models/ingrediente');
 
 
 router.get('/', async (req,res)=>{ 
-    const ingrediente= await Ingrediente.find();
+    const ingredientes= await Ingrediente.find({});
        
-    console.log(ingrediente);
-    res.json(ingrediente);
+    console.log(ingredientes);
+    res.json(ingredientes);
 });
 
 router.get('/:id', async (req, res) => {

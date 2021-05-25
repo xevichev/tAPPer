@@ -21,7 +21,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/nueva-receta', (req, res) => {  // SUBIR
 
-    const {name, vegetariano,vegano, duracion,procedimiento, dificultad, raciones,microondas, ingredientesId} = req.body;
+    const {name, vegetariano,vegano, duracion,procedimiento, dificultad, raciones,microondas, ingredientes} = req.body;
     
     let newReceta = new Receta({
         
@@ -43,7 +43,7 @@ router.post('/nueva-receta', (req, res) => {  // SUBIR
         dificultad,
         raciones,
         microondas,
-        ingredientes: ingredientesId
+        ingredientes
     })
     
     newReceta.save().then(receta => res.json(receta)); 

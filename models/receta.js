@@ -12,8 +12,11 @@ const recetaSchema= new Schema({           //creem un esquema de les dades que h
     raciones:Number,
     microondas: String,
     ingredientes: [
-        {type: moongose.Schema.Types.ObjectId, 
-        ref:"Ingrediente"}, // Ingrediente se refiere al model que exportas. 
+        {
+            ingrediente: {type: moongose.Schema.Types.ObjectId, 
+                ref:"Ingrediente"}, 
+            cantidad: Number
+        }
                  
         ]
 });

@@ -126,13 +126,7 @@ const GestionIngredientes= ()=>{
     
       return (
               <div>
-            {/* //    
-            //       <nav className="light-blue">
-            //           <div className="container">
-            //               <a className="brand-logo" href="/">tapper</a>
-            //           </div>
-            //       </nav> */}
-                  <div className="container">
+                <div className="container">
                       <div className="row">
                           <div className="col s5">
                               <div className="card" style={{margin:"50px"}} >
