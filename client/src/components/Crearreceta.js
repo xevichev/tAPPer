@@ -87,19 +87,20 @@ const crearReceta= ()=> {
     let [listaProvisional, setListaProvisional] =useState([]);
 
     const añadirIngrediente= e =>{
-        
-        
+        // Añadir if para gestionar si el elemento seleccionado esta vacio.
         setListaProvisional(listaProvisional => [...listaProvisional, ingredienteSeleccionados])
         
         setIngredienteSeleccionados({
-        ingrediente:"",
-        cantidad:""            
-        })
+            ingrediente:"",
+            cantidad:""            
+            })
+        
+       
     }
 
     const borrarIngrediente= (id)=>{
-        // const ingredientesDeLaLista = listaProvisional.filter((ingrediente) => ingrediente.ingrediente !== id);
-        // setListaProvisional(ingredientesDeLaLista)   <-- no funciona.
+        const ingredientesDeLaLista = listaProvisional.filter((ingrediente) => ingrediente.ingrediente != id);
+        setListaProvisional(ingredientesDeLaLista)  
     }
 
 return (
@@ -125,13 +126,13 @@ return (
                     <span>¿Es una receta vegana?</span>
                     <p>
                     <label>
-                    <input type="radio" name="vegano" id="veganoSi" value="Si" onChange={handleChange}/>
+                    <input type="radio" name="vegano" id="veganoSi" value={true} onChange={handleChange}/>
                     <span>Si</span>
                     </label>
                     </p>
                     <p>               
                     <label>                      
-                    <input type="radio" name="vegano" id="veganoNo" value="No" onChange={handleChange}/>
+                    <input type="radio" name="vegano" id="veganoNo" value={false} onChange={handleChange}/>
                     <span>No</span>
                     </label>                    
                     </p>
@@ -141,14 +142,14 @@ return (
                     <span>¿Es una receta vegetariana?</span> 
                     <p>
                     <label htmlFor="vegetarianoSi">
-                    <input type="radio" name="vegetariano" id="vegetarianoSi" value="Si" onChange={handleChange}/>
+                    <input type="radio" name="vegetariano" id="vegetarianoSi" value= {true} onChange={handleChange}/>
                     <span>Si</span>
                     </label>      
                     </p>           
                     
                     <p>
                     <label htmlFor="vegetarianoNo">
-                    <input type="radio" name="vegetariano" id="vegetarianoNo" value="No" onChange={handleChange}/>
+                    <input type="radio" name="vegetariano" id="vegetarianoNo" value={false} onChange={handleChange}/>
                     <span>No</span>
                     </label>  
                     </p>
@@ -204,7 +205,7 @@ return (
 
                     <div className = "input-field col s4">
                     <input onChange={handleIngredienteSeleccionado} type="number" name="cantidad"/>
-                    <label htmlFor="cantidad">medida</label>
+                    <label htmlFor="cantidad">{ingredienteSeleccionados.ingrediente && opcionIngredientes.find(ingrediente => ingrediente._id == ingredienteSeleccionados.ingrediente).medida}</label>
                     </div>
                     </div>
                     <div className="row">
@@ -225,7 +226,7 @@ return (
                                     <td>{ingrediente.ingrediente}</td>
                                     <td>{ingrediente.cantidad}</td>
                                     <td>
-                                        <button onClick={borrarIngrediente(ingrediente.ingrediente)}>Borrar ingrediente</button> 
+                                        <button onClick={()=>borrarIngrediente(ingrediente.ingrediente)}>Borrar ingrediente</button> 
                                     </td>
                                 </tr>)
                             })}

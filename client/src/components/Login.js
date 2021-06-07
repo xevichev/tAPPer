@@ -1,14 +1,16 @@
+
 import axios from "axios";
 import React, { useState, useHistory } from "react";
+import { withRouter } from "react-router-dom";
 
+const Login = (props)=>{
 
-const Inscribirse =()=> {
-    
     let [state,setState] = useState({
-        username:"",
         email:"",
         password:""
     })
+
+    let [error, setError] = useState(false);
 
     const handleChange = (e)=>{
         const { name, value } = e.target;
@@ -18,40 +20,44 @@ const Inscribirse =()=> {
         })
     }
 
+    const logearUsuario = async e =>{
+     try {const response = await axios.post('http://localhost:5000/api/users/login', state)
+        console.log(response.data);
     
-    const registrarUsuario= async e =>{
-        
-
-        await axios.post('http://localhost:5000/api/users/signup',state)
-        .then(res=>console.log(res))
-        .catch(err=>console.error(err))
-        e.preventDefault();
+        localStorage.setItem('token', response.data.token)
+        props.history.push('/');}     
+    
+    catch (err) {
+        console.log(errores)
+        setError(true)}
 
     }
-    
-    
-    return(
-        <div>
-            <h3>Registrate!</h3>
+
+
+return(
+    <div>
+        <h4>Introduce tus datos</h4>
             <div className="row">
             
-            <form className="col 12"  onSubmit={registrarUsuario}>
-
+            <form className="col 12" onSubmit={logearUsuario} > 
+            
                 <div className= "input-field  col s6">
-                <input placeholder="Nombre de usuario" type="text" name="username"onChange={handleChange} ></input>
+              
                 <input placeholder="E-mail" type="email" name="email"onChange={handleChange} ></input>
                 <input placeholder="Constraseña" type="password" name="password"onChange={handleChange} ></input>
                 </div>
 
-                <button type="submit">Registrar</button>
+                <button type="submit" >Iniciar Sesión</button>
             </form>
             
 
             </div>
+    </div>
+)
 
-        </div>
-    )
-    
 }
 
-export default Inscribirse;
+
+export default withRouter(Login);
+
+

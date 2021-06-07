@@ -10,7 +10,7 @@ const Home =()=> {
                     <div className="card-content">
                         <p>lorem </p>
                         <img></img>
-                        <button class="waves-effect waves-light btn">+ info</button>
+                        <button className="waves-effect waves-light btn">+ info</button>
                     </div>
 
                 </div>

@@ -5,6 +5,7 @@ import GestionIngredientes from "./components/GestionIngredientes";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Inscribirse from "./components/Inscribirse";
+import Login from "./components/Login";
 import "./App.css";
 
 function App(){
@@ -27,6 +28,9 @@ function App(){
         </Route>
         <Route path="/Inscribirse" >
         <Inscribirse/>
+        </Route>
+        <Route path="/Login">
+        <Login/>
         </Route>
 
     </Switch>

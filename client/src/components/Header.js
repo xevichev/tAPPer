@@ -10,7 +10,8 @@ return(
         <li><Link to="/CrearReceta">Crea tu Receta</Link></li>
         <li><Link to="/GestionIngredientes">API Ingredientes</Link></li>
         <li><Link to="/Inscribirse" >Inscribirse</Link></li>
-        <button className="waves-effect waves-light btn" style={{borderColor:"black" , borderWidth:"1px", borderStyle:"solid"}} >Iniciar Sesión</button>
+               
+        <button className="waves-effect waves-light btn" style={{borderColor:"black" , borderWidth:"1px", borderStyle:"solid"}}><Link to="/Login">Iniciar Sesión</Link></button>
       </ul>
   </div>
 
